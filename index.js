@@ -8,4 +8,3 @@ sxcModule.prototype.say = function(){
 
 module.exports = sxcModule;
 
-edit
