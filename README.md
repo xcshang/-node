@@ -23,4 +23,9 @@
 ___
 
 ### 5、链接
+[链接文字](链接地址)
 [baidu](http://www.baidu.com)
+
+### 6、图片
+![图片描述](图片地址)
+![baidu](https://www.baidu.com/img/bd_logo1.png)
