@@ -50,6 +50,6 @@ let b = 2;
 
 |head|head|head|
 |:----:|:----|----:|
-|center|left|right|
+|centercentercenter|left|right|
 |center|left|right|
 |center|left|right|
