@@ -31,5 +31,10 @@ ___
 ![baidu](https://www.baidu.com/img/bd_logo1.png)
 
 ### 7、代码框
-单行用"`"号包起来，多行用3个"`"包起来
+
 `let a = 1`
+
+```
+let a = 1;
+let b = 2;
+```
