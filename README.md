@@ -46,4 +46,8 @@ let b = 2;
 ### 删除线
 ~~待删除~~
 
-
+|head|head|head|
+|:----:|:----|----:|
+|center|left|right|
+|center|left|right|
+|center|left|right|
