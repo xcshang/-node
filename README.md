@@ -1,58 +1,95 @@
-<div>
-  <img src="https://www.baidu.com/img/bd_logo1.png" width="100px">
-<div/>  
+系统简介
+===========
 
-### 1、标题
-“#”（1-7）标题 表示1-7级标题，也可以用 # 标题 # 这种形式
-# node
-## node
-### node
+- [1. 项目简介](#1-项目简介)
+- [2. 目录介绍](#2-目录介绍)
+- [3. 依赖服务](#3-依赖服务)
+- [4. 环境配置](#4-环境配置)
+- [5. 系统运行](#5-系统运行)
 
-### 2、无序列表
-前面用 “+” 或 “*” 或 “-”
-+ 1
-+ 2
-+ 3
+## 1. 系统简介
+ 本系统采用 spring boot + mybatis + freemarker 
+## 2. 代码目录介绍
+gulp: 前端打包工具
+nodejs: 前端运行环境
+src-css: 前端CSS
+src-js: 前端JS
+src-template: 前端FTL
+src-lib: 前端lib
+src-main-resources: 后端配置目录
+src-main-Java: 后端代码目录
 
-### 3、有序列表
-直接用数学加小圆点
-1. one
-2. two
 
-### 4、分割线
-可以由"*" "-" "_" 这3个符号的至少3个
-***
----
-___
+## 3. 依赖服务
+1.系统登录状态依赖网易云账号服务
+2.表单提交时滑块验证、短信验证依赖易盾云信服务
 
-### 5、链接
-[baidu](http://www.baidu.com)
+## 4. 环境配置
 
-### 6、图片
-比链接前面多一个\!号
-![baidu](https://www.baidu.com/img/bd_logo1.png)
-
-### 7、代码框
-单行\`,多行用3个\`包起来
-
-`let a = 1`
-
-``` 这里可以添加注释
-let a = 1;
-let b = 2;
+数据库配置
 ```
-### 8、文字强调
-前后用\*或\_号，注意中间不能有空格  
-*强调文字*  
-**强调并加粗文字**
+mysql.main.datasource.jdbcUrl = jdbc:mysql://10.240.192.254:3307/website?allowMultiQueries=true&useSSL=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+mysql.main.datasource.username = root
+mysql.main.datasource.password =
+```
 
-### 9、删除线
-~~待删除~~
+域名配置（baseUrl：为nic地址，passportUrl：网易云账号地址）
+```
+frontend.nic.NicController.sdkVars= baseUrl:http://test.163.com:8096,passportUrl:http://test.163.com:8091
 
-### 10、表格
+```
 
-|head|head|head|
-|:----:|:----|----:|
-|centercentercenter|leftleftleft|rightrightright|
-|center|left|right|
-|center|left|right|
+易盾滑块配置
+```
+client.common.NeteaseCaptchaClient.serverDomain= http://c.dun.163yun.com
+client.common.NeteaseCaptchaClient.secretId= 96f630d6223d6969fedc4014af28ce43
+client.common.NeteaseCaptchaClient.secretKey= 2fd097473ce17dcd8905e812d1137473
+client.common.NeteaseCaptchaClient.captchaId= fffc9360980142aeb31603e22c0ac7f9
+```
+
+云信短信配置
+
+```
+client.common.NeteaseSMSClient.serverDomain= https://api.netease.im
+client.common.NeteaseSMSClient.appKey= 0fc21f17721cdb43468383efe0aa0310
+client.common.NeteaseSMSClient.appSecret= d0c68f7b4063
+client.common.NeteaseSMSClient.codeLen= 6
+client.common.NeteaseSMSClient.templateId= 3054042
+
+```
+ NOS配置
+```
+client.storage.StorageClientNos.nosDomain= https://nos.netease.com
+client.storage.StorageClientNos.accessKey= 30f59cc8c286414c996760502c920b18
+client.storage.StorageClientNos.secretKey= 4507267d3d1e459cbc7c22cd45e9cd75
+client.storage.StorageClientNos.bucket= cloud-website-bucket-test
+```
+
+
+网易云账号配置
+```
+client.login.CloudClient.domain= http://test.163.com:8091
+client.login.CloudClient.domain.product= nic
+client.login.CloudClient.domain.signKey=0eedc9aea2c505a97d43432819f000d7
+```
+
+## 6. 系统运行
+Pull代码，如要配置maven的settings.xml，可以：
+```
+cp ~/ host-nic/settings.xml ~/.m2/ 并mvn编译
+```
+或每次编译时使用-s settings.xml参数
+
+编译代码：
+```
+mvn clean install
+```
+本地起程序：
+```
+java -jar target/host-nic-2.0.0.war
+```
+
+覆盖默认的配置项
+```
+-Dspring.config.location=file:///home/cloud/netease-cloud-config/nic-config/dev/application.properties
+```
